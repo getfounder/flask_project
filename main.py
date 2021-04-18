@@ -16,7 +16,7 @@ def set_password(self, password):
 def check_password(self, password):
     return check_password_hash(self.hashed_password, password)
 
-
+db_session.global_init("db/data.db")
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
@@ -36,8 +36,7 @@ def login():
     if form.validate_on_submit():
         db_sess = db_session.create_session()
         user = db_sess.query(User).filter(User.email == form.email.data).first()
-        if user and user.check_password(form.password.data):
-            load_user(user, remember=form.remember_me.data)
+        if user and user.password == form.password.data:
             return redirect("/")
         return render_template('login.html', message="Wrong login or password", form=form)
     return render_template('login.html', title='Authorization', form=form)
@@ -48,20 +47,19 @@ def reqister():
     form = RegisterForm()
     if form.validate_on_submit():
         if form.password.data != form.password_again.data:
-            return render_template('register.html', title='Регистрация',
+            return render_template('registration.html', title='Регистрация',
                                    form=form,
                                    message="Пароли не совпадают")
         db_sess = db_session.create_session()
         if db_sess.query(User).filter(User.email == form.email.data).first():
-            return render_template('register.html', title='Регистрация',
+            return render_template('registration.html', title='Регистрация',
                                    form=form,
                                    message="Такой пользователь уже есть")
-        user = User(
-            name=form.name.data,
-            email=form.email.data,
-            about=form.about.data
-        )
-        user.set_password(form.password.data)
+        user = User()
+        user.name=form.name.data
+        user.email=form.email.data
+        user.surname=form.surname.data
+        user.password=form.password.data
         db_sess.add(user)
         db_sess.commit()
         return redirect('/login')
