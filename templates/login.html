@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Authorization</h1>
+    <h1>Авторизация</h1>
     <form action="" method="post">
         {{ form.hidden_tag() }}
+        {% if message %}
+        <p>{{ message }}</p>
+        {% endif %}
         <p>
             {{ form.email.label }}<br>
             {{ form.email(class="form-control", type="email") }}<br>
@@ -22,7 +25,6 @@
                 </div>
             {% endfor %}
         </p>
-        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
         <p>{{ form.submit(type="submit", class="btn btn-primary")}}</p>
         <div>{{ message }}</div>
     </form>

@@ -16,6 +16,7 @@ def set_password(self, password):
 def check_password(self, password):
     return check_password_hash(self.hashed_password, password)
 
+
 db_session.global_init("db/data.db")
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -30,6 +31,14 @@ def load_user(user_id):
     return db_sess.query(User).get(user_id)
 
 
+@app.route('/')
+def show():
+    return render_template("index.html")
+
+@app.route('/delivery')
+def delivery():
+    return render_template("delivery.html", title="Доставка")
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -39,7 +48,7 @@ def login():
         if user and user.password == form.password.data:
             return redirect("/")
         return render_template('login.html', message="Wrong login or password", form=form)
-    return render_template('login.html', title='Authorization', form=form)
+    return render_template('login.html', title='Авторизация', form=form)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -53,7 +62,7 @@ def reqister():
         db_sess = db_session.create_session()
         if db_sess.query(User).filter(User.email == form.email.data).first():
             return render_template('registration.html', title='Регистрация',
-                                   form=form,
+                                   form=form, css_connect='<link rel="stylesheet" href="css/style.css">',
                                    message="Такой пользователь уже есть")
         user = User()
         user.name=form.name.data
@@ -63,7 +72,7 @@ def reqister():
         db_sess.add(user)
         db_sess.commit()
         return redirect('/login')
-    return render_template('registration.html', title='Регистрация', form=form)
+    return render_template('registration.html', title='Регистрация', css_connect='<link rel="stylesheet" href="css/style.css">', form=form)
 
 
 if __name__ == '__main__':

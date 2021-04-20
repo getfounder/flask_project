@@ -1,24 +1,73 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-          crossorigin="anonymous">
-</head>
-<body>
-<header>
-    <nav class="navbar navbar-light bg-light">
-        <h1>Миссия Колонизация Марса</h1>
-        <a class="navbar-brand" href="#">Миссия Колонизация Марса</a>
-    </nav>
-    <h4>И на Марсе будут яблони цвести!</h4>
-</header>
-<!-- Begin page content -->
-<main role="main" class="container">
-    {% block content %}{% endblock %}
-</main>
-</body>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+	<link rel="stylesheet" href="{{ url_for("static", filename="css/style.css") }}">
+	{% if title == "Регистрация" or title == "Авторизация" %}
+	<link rel="stylesheet" href="{{ url_for("static", filename="css/log_res_style.css") }}">
+	{% elif title == "Доставка" %}
+	<link rel="stylesheet" href="{{ url_for("static", filename="css/delivery_style.css") }}">
+	{% endif %}
+
+    </head>
+    <body>
+        <header>
+
+            <div id="logo_image" class="header_content">
+                <a href="./">
+                    <img src="{{ url_for("static", filename="img/logo.png") }}">
+                </a>
+            </div>
+
+
+            <div id="about_service" class="header_content">
+                <span class="about_service_block">
+                    <a href="./">
+                    Наши магазины
+                    </a>
+                </span>
+
+                <span class="about_service_block">
+                    <a href="./">
+                    +7(900)800-70-60
+                    </a>
+                </span>
+            </div>
+
+            <div id="additional_info" class="header_content">
+                <span class="additional_info_block">
+          {% if title == "Регистрация" %}
+                        <a href="./login">
+                        Войти
+                        </a>
+                    {% else %}
+                        <a href="./register">
+                        Зарегистрироваться
+                        </a>
+                    {% endif %}
+                </span>
+
+                <span class="additional_info_block">
+                    <a href="./">
+                    Группа ВК
+                    </a>
+                </span>
+
+                <span class="additional_info_block">
+                    <a href="./">
+                    Доставка
+                    </a>
+                </span>
+            </div>
+        </header>
+
+	<!-- Begin page content -->
+	<main role="main" class="container">
+		{% block content %}{% endblock %}
+	</main>
+
+        <footer>
+        </footer>
+
+    </body>
 </html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{{ url_for("static", filename="css/style.css") }}">
+    </head>
+    <body>
+        <header>
+
+            <div id="logo_image" class="header_content">
+                <a href="./">
+                    <img src="{{ url_for("static", filename="img/logo.png") }}">
+                </a>
+            </div>
+
+
+            <div id="about_service" class="header_content">
+                <span class="about_service_block">
+                    <a href="./">
+                    Наши магазины
+                    </a>
+                </span>
+
+                <span class="about_service_block">
+                    <a href="./">
+                    +7(900)800-70-60
+                    </a>
+                </span>
+            </div>
+
+            <div id="additional_info" class="header_content">
+                <span class="additional_info_block">
+                    <a href="/register">
+                    Зарегистрироваться
+                    </a>
+                </span>
+
+                <span class="additional_info_block">
+                    <a href="./">
+                    Группа ВК
+                    </a>
+                </span>
+
+                <span class="additional_info_block">
+                    <a href="/delivery">
+                    Доставка
+                    </a>
+                </span>
+            </div>
+        </header>
+
+        <div id="promo_block"> 
+            <span class="promo_block_content">
+                <img src="{{ url_for("static", filename="img/main_title.jpg") }}">
+            </span>
+            
+            <span class="promo_block_content">
+                <img src="{{ url_for("static", filename="img/main_top_right.jpg") }}">
+            </span>
+        </div>
+
+        <h1 id="populary_category">Популярные категории</h1>
+        
+        <div id="categories">
+            <a class="categories_content">
+                <span>
+                    <img src="{{ url_for("static", filename="img/smartphones.png") }}">
+                    <p class="description">Смартфоны</p>
+                </span>
+            </a>
+
+            <a class="categories_content">
+                <span class="categories_content">
+                    <img src="{{ url_for("static", filename="img/headphones.png") }}">
+                    <p class="description">Наушники</p>
+                </span>
+            </a>
+            
+            <a class="categories_content">
+                <span class="categories_content">
+                    <img src="{{ url_for("static", filename="img/chargers.png") }}">
+                    <p class="description">Зарядки</p>
+                </span>
+            </a>
+        </div>
+
+        <footer>
+        </footer>
+
+    </body>
+</html>
