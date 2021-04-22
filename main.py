@@ -65,7 +65,7 @@ def login():
             with open("static/txt/logs.txt", mode="w") as is_login_txt:
                 is_login_txt.write("True")
             return redirect("/")
-        return render_template('login.html', message="Неверный логин или пароль", form=form, status_login=is_login)
+        return render_template('login.html',  title='Авторизация', message="Неверный логин или пароль", form=form, status_login=is_login)
     return render_template('login.html', title='Авторизация', form=form, status_login=is_login)
 
 
