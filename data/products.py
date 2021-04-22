@@ -9,3 +9,4 @@ class Products(SqlAlchemyBase):
     products = sqlalchemy.Column(sqlalchemy.String)
     description = sqlalchemy.Column(sqlalchemy.String)
     img_scr = sqlalchemy.Column(sqlalchemy.String)
+    categories = sqlalchemy.Column(sqlalchemy.String, sqlalchemy.ForeignKey("categories.id"))

@@ -22,15 +22,11 @@
 
             <div id="about_service" class="header_content">
                 <span class="about_service_block">
-                    <a href="./">
                     Наши магазины
-                    </a>
                 </span>
 
                 <span class="about_service_block">
-                    <a href="./">
                     +7(900)800-70-60
-                    </a>
                 </span>
             </div>
 
@@ -48,16 +44,26 @@
                 </span>
 
                 <span class="additional_info_block">
-                    <a href="./">
+                    <a href="https://vk.com/club203399900">
                     Группа ВК
                     </a>
                 </span>
 
                 <span class="additional_info_block">
-                    <a href="./">
+                    <a href="./delivery">
                     Доставка
                     </a>
                 </span>
+
+     		{% if status_login == True %}
+                <span id="basket_image" class="additional_info_block">
+                    <a href="/basket">
+                    <img  src="{{ url_for("static", filename="img/basket.png") }}">
+                    </a>
+                </span>
+		{% else %}
+		<span></span>
+		{% endif %}
             </div>
         </header>
 

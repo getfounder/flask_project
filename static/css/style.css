@@ -79,6 +79,11 @@ header{
     padding: 50px 100px 0px 100px;
 }
 
+#basket_image{
+    width: auto;
+    padding: 8px 0px 8px 0px;	
+}
+
 #categories{
     display: flex;
     flex-wrap: wrap;
