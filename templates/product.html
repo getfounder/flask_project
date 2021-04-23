@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Каталог товаров</h1>
+    <div class="product">
+    {% for product in data_info %}
+    <img class="product_content" src="static/img/{{ product.img_scr }}">
+    <div id="info_block_with_text" class="product_content">
+<p>{{ product.products }}</p>
+<p>{{ product.description }}</p>
+<p>{{ product.costs }}</p>
+<p>{% if product.count != 0 %} В наличии {% else %} Нет в наличии {% endif %}</p>
+</div>
+
+    {% endfor %}
+    </div>
+{% endblock %}
