@@ -111,3 +111,21 @@ input{
 #example1{
     margin: 0% 42%
 }
+
+
+#product{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0px 100px 0px 0px;
+}
+
+.product_content{
+    width: 10%;
+    font-size: 24px;
+    padding: 0px  0px 0px 0px;
+}
+
+#info_block_with_text{
+	margin: -400px 0 0 200px;
+}

@@ -3,12 +3,14 @@ from flask_login import LoginManager, logout_user, login_required, login_user
 from flask_ngrok import run_with_ngrok
 
 from data import db_session
+from data.products import Products
 from data.users import User
 from data.login_form import LoginForm
 
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from forms.user import RegisterForm
+from forms.product import InBasket
 
 with open("static/txt/logs.txt", mode="w") as is_login_txt:
     is_login_txt.write("False")
@@ -51,9 +53,31 @@ def delivery():
 
 @app.route('/smartphones')
 def smartphones():
+    form = InBasket()
     with open("static/txt/logs.txt", mode="r") as is_login_txt:
         is_login = is_login_txt.readlines()[0] == "True"
-    return render_template("base.html", title="Каталог", status_login=is_login)
+    db_sess = db_session.create_session()
+    data = db_sess.query(Products).filter(Products.categories == 1)
+    return render_template("product.html", title="Каталог", data_info=data, form=form, status_login=is_login)
+
+@app.route('/headphones')
+def headphones():
+    form = InBasket()
+    with open("static/txt/logs.txt", mode="r") as is_login_txt:
+        is_login = is_login_txt.readlines()[0] == "True"
+    db_sess = db_session.create_session()
+    data = db_sess.query(Products).filter(Products.categories == 2)
+    return render_template("product.html", title="Каталог", data_info=data, form=form, status_login=is_login)
+
+@app.route('/chargers')
+def chargers():
+    form = InBasket()
+    with open("static/txt/logs.txt", mode="r") as is_login_txt:
+        is_login = is_login_txt.readlines()[0] == "True"
+    db_sess = db_session.create_session()
+    data = db_sess.query(Products).filter(Products.categories == 3)
+    return render_template("product.html", title="Каталог", data_info=data, form=form, status_login=is_login)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -77,6 +101,7 @@ def reqister():
         is_login_txt.write("False")
     form = RegisterForm()
     if form.validate_on_submit():
+        print(form.validate_on_submit)
         if form.password.data != form.password_again.data:
             return render_template('registration.html', title='Регистрация',
                                    form=form,
