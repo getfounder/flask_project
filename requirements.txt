@@ -1,0 +1,7 @@
+flask
+flask_login
+flask_ngrok
+import os
+werkzeug.security
+flask_wtf
+sqlalchemy
