@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect
 from flask_login import LoginManager, logout_user, login_required, login_user
+from flask_ngrok import run_with_ngrok
 
 from data import db_session
 from data.users import User
@@ -22,6 +23,7 @@ def check_password(self, password):
 db_session.global_init("db/data.db")
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+run_with_ngrok(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -101,4 +103,4 @@ def reqister():
 
 
 if __name__ == '__main__':
-    app.run(port=8080, host='127.0.0.1')
+    app.run()

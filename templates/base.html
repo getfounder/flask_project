@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html>
     <head>
+	<script type="text/javascript">
+      var verifyCallback = function(response) {
+        alert(response);
+      };
+      var widgetId1;
+      var widgetId2;
+      var onloadCallback = function() {
+        // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
+        // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
+        widgetId1 = grecaptcha.render('example1', {
+          'sitekey' : '6LdxUrUaAAAAAHa3FcbPi1SLnbAJF31JHajHIXuB',
+          'theme' : 'light'
+        });
+      };
+    </script>
         <meta charset="UTF-8">
 	<link rel="stylesheet" href="{{ url_for("static", filename="css/style.css") }}">
 	{% if title == "Регистрация" or title == "Авторизация" %}
@@ -72,6 +87,9 @@
 		{% block content %}{% endblock %}
 	</main>
 
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+    </script>
         <footer>
         </footer>
 
