@@ -10,10 +10,6 @@
 <p>{{ product.description }}</p>
 <p>{{ product.costs }}</p>
 <p>{% if product.count != 0 %} В наличии {% else %} Нет в наличии {% endif %}</p>
-    <form action="" method="post">
-       	<p>{{ form.submit(type="submit", class="btn btn-primary")}}</p>
-    </form>
-</div>
 
     {% endfor %}
     </div>
